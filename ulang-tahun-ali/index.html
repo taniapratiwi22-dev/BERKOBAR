@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#ad082d">
+<title>Ali's Birthday 💌</title>
+<style>
+:root{--red:#b20b32;--orange:#f06a09;--gold:#ffdf71;--paper:#fff9ee;--ink:#522432;--bg:#fff0f3}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;font-family:Georgia,'Times New Roman',serif;background:radial-gradient(circle at top,#fff 0,var(--bg) 54%,#f6dce3 100%);color:var(--ink);padding:22px 14px}
+.wrap{width:min(760px,100%);margin:auto;text-align:center}
+h1{font-size:clamp(2rem,6vw,3.2rem);line-height:1.1;margin:10px 0;color:var(--red)}
+.sub{font-size:1.05rem;line-height:1.6}
+.envelope-area{margin:26px auto 16px;max-width:430px;cursor:pointer;outline-offset:6px}
+.envelope{height:235px;position:relative;background:#c51d43;border-radius:8px;box-shadow:0 14px 28px #8e183533;overflow:hidden;transition:transform .3s}
+.envelope:before{content:"";position:absolute;inset:0;background:linear-gradient(145deg,transparent 49%,#a80e32 50%) left/50% 100% no-repeat,linear-gradient(215deg,transparent 49%,#e34a68 50%) right/50% 100% no-repeat}
+.flap{position:absolute;left:0;right:0;top:0;margin:auto;width:0;height:0;border-left:215px solid transparent;border-right:215px solid transparent;border-top:150px solid #f05a75;transform-origin:top;transition:transform .7s;z-index:3}
+.seal{position:absolute;z-index:4;left:50%;top:103px;transform:translateX(-50%);font-size:2.2rem;filter:drop-shadow(0 2px 2px #78102c)}
+.env-label{position:absolute;z-index:2;inset:auto 10px 22px;color:white;font-size:1.15rem;font-weight:bold;letter-spacing:2px}
+.envelope-area.open .flap{transform:rotateX(180deg);z-index:0}
+.envelope-area.open .envelope{transform:translateY(3px)}
+.tap{font: .9rem Arial,sans-serif;color:#7b4352;margin-bottom:18px}
+.letter{display:none;text-align:left;background:var(--paper);border:2px solid #f1c95e;border-radius:18px;padding:clamp(16px,4vw,30px);box-shadow:0 10px 28px #7b25301c;animation:rise .6s ease}
+.letter.show{display:block}
+@keyframes rise{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}
+.letter h2{text-align:center;color:var(--red);font-size:clamp(1.6rem,5vw,2.2rem);margin:0 0 12px}
+.letter p{line-height:1.7;font-size:1.02rem}
+.music{display:block;text-align:center;background:var(--red);color:white;text-decoration:none;padding:13px 18px;border-radius:30px;font:600 1rem Arial,sans-serif;margin:20px auto;max-width:390px}
+.music:hover{background:#7f001c}
+.coupons{margin-top:26px}
+.coupons h3{text-align:center;color:var(--red);font-size:1.45rem;margin-bottom:8px}
+.note{text-align:center;font:.88rem/1.5 Arial,sans-serif;color:#704b55}
+.progress{height:10px;background:#f0d9dc;border-radius:99px;overflow:hidden;margin:14px 0 6px}
+.progress span{display:block;height:100%;width:0;background:#b30b31;transition:width .25s}
+.coupon{--ticket:var(--red);position:relative;isolation:isolate;display:grid;grid-template-columns:105px minmax(0,1fr) 48px;gap:0;align-items:stretch;margin:16px 0;color:white;text-align:left;font:normal 14px/1.4 Arial,sans-serif;background:radial-gradient(circle at 0 14px,var(--bg) 0 10px,transparent 10.5px) left top/14px 28px repeat-y,radial-gradient(circle at 100% 14px,var(--bg) 0 10px,transparent 10.5px) right top/14px 28px repeat-y,linear-gradient(var(--ticket),var(--ticket));border-radius:9px;overflow:hidden;box-shadow:0 7px 13px #76203b20;min-height:150px;transition:opacity .2s,filter .2s}
+.coupon.orange{--ticket:var(--orange)}
+.ticket-left{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;border-right:3px dashed #ffffffbb;padding:13px 7px;font-weight:800;font-size:13px;letter-spacing:.6px;position:relative}
+.ticket-art{font-size:2.7rem;line-height:1.25;margin-top:10px;filter:drop-shadow(0 2px 0 #6b1530aa)}
+.ticket-number{position:absolute;right:-17px;top:calc(50% - 17px);z-index:2;width:34px;height:34px;border-radius:50%;background:white;color:#333;border:2px solid #f2dce1;display:grid;place-items:center;font-size:14px;font-weight:900;letter-spacing:0}
+.ticket-main{padding:14px 11px 14px 22px;min-width:0;display:flex;flex-direction:column;justify-content:center;gap:4px}
+.ticket-brand{font-size:clamp(10px,2.2vw,13px);opacity:.95;font-weight:700}
+.coupon strong{display:block;font-size:clamp(16px,3.8vw,24px);line-height:1.12;color:white;letter-spacing:.1px;margin:2px 0}
+.coupon small{display:block;color:#fff9f2;font-size:13px;line-height:1.35}
+.coupon-tag{align-self:flex-start;display:inline-block;background:var(--gold);color:#7b2c13;padding:5px 8px;font-weight:900;font-size:11px;letter-spacing:.3px;margin-top:6px;border:1px dashed #8b4c1c}
+.ticket-check{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:7px 7px 7px 0;gap:5px}
+.coupon input{appearance:auto;width:25px;height:25px;accent-color:#fff7c5;cursor:pointer;flex-shrink:0}
+.check-label{font:800 10px Arial,sans-serif;text-align:center}
+.coupon.used{filter:saturate(.55);opacity:.62}
+.coupon.used strong{text-decoration:line-through}
+.coupon.used .ticket-check:after{content:"SUDAH\\A DIPAKAI";white-space:pre;text-align:center;font-size:9px;font-weight:900;color:white}
+.coupon.used .coupon-tag{background:#fff}
+footer{text-align:center;font:.85rem Arial,sans-serif;color:#8b6670;margin:22px 0 4px}
+@media(max-width:440px){body{padding:18px 9px}.flap{border-left-width:50vw;border-right-width:50vw;border-top-width:140px}.envelope{height:218px}.coupon{grid-template-columns:82px minmax(0,1fr) 39px;min-height:138px}.ticket-left{font-size:11px;padding:9px 4px}.ticket-art{font-size:2.15rem}.ticket-main{padding:12px 6px 12px 15px}.coupon strong{font-size:16px}.coupon small{font-size:11px}.coupon-tag{font-size:9px;padding:4px 5px}.ticket-brand{font-size:10px}.coupon input{width:21px;height:21px}.ticket-check{padding-right:4px}.ticket-number{width:30px;height:30px;right:-16px;top:calc(50% - 15px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<main class="wrap">
+<div style="font-size:2rem">🎉 💝 🎉</div>
+<h1>Selamat Ulang Tahun<br>Ali Sandra!</h1>
+<div class="sub">Ada hadiah kecil dan kupon spesial dari seseorang yang paling menyayangimu. ❤️</div>
+<div class="envelope-area" id="envelope" role="button" tabindex="0" aria-label="Buka amplop ulang tahun">
+  <div class="envelope"><div class="flap"></div><div class="seal">❤️</div><div class="env-label">UNTUK ALI SANDRA</div></div>
+</div>
+<div class="tap" id="tapText">💌 Ketuk amplop untuk membuka suratmu 💌</div>
+<section class="letter" id="letter">
+<h2>Untuk Suamiku Tercinta ❤️</h2>
+<p><strong>Selamat ulang tahun, Ali Sandra!</strong> 🥳🎂</p>
+<p>Ini kupon ulang tahunmu, disponsori oleh istrimu tercinta. Semoga di usia yang baru ini, Ali selalu diberi kesehatan, kebahagiaan, rezeki yang berkah, dan semua hal baik yang Ali harapkan.</p>
+<p>Setiap kali kamu mau memakai satu kupon, <strong>kita harus mencentang kuponnya bersama</strong> supaya kupon itu tercatat sudah terpakai, ya! 💋</p>
+<p>Dengan penuh cinta, peluk, dan cium dari istrimu tersayang. ❤️</p>
+<a class="music" href="https://www.youtube.com/watch?v=yIPX-FNJ9qk&amp;list=RDfLdVq8n-KQg&amp;index=6" target="_blank" rel="noopener">▶ Putar lagu spesial untuk Ali</a>
+<div class="coupons">
+<h3>🎟️ Kupon Spesial Ulang Tahun 🎟️</h3>
+<div class="note">Centang kupon saat digunakan. Status centang tersimpan pada browser/perangkat ini.</div>
+<div class="progress"><span id="progressBar"></span></div>
+<div class="note" id="progressText">0 dari 4 kupon telah digunakan</div>
+<label class="coupon" id="c1"><span class="ticket-left">KUPON<br>ISTIMEWA<span class="ticket-art">🍽️</span><span class="ticket-number">01</span></span><span class="ticket-main"><span class="ticket-brand">Ali's Special Birthday Coupon 🎈</span><strong>1× MAKAN APA AJA</strong><small>Sampai kenyang!</small><span class="coupon-tag">UNTUK SUAMI ❤️</span></span><span class="ticket-check"><input type="checkbox" aria-label="Tandai kupon makan telah digunakan" data-coupon="1"><span class="check-label">PAKAI</span></span></label>
+<label class="coupon orange" id="c2"><span class="ticket-left">KUPON<br>ISTIMEWA<span class="ticket-art">🛍️</span><span class="ticket-number">02</span></span><span class="ticket-main"><span class="ticket-brand">Ali's Special Birthday Coupon 🎈</span><strong>1× JALAN KE MALL</strong><small>Beli 1 barang (maks. Rp500.000)</small><span class="coupon-tag">UNTUK SUAMI ❤️</span></span><span class="ticket-check"><input type="checkbox" aria-label="Tandai kupon jalan ke mal telah digunakan" data-coupon="2"><span class="check-label">PAKAI</span></span></label>
+<label class="coupon" id="c3"><span class="ticket-left">KUPON<br>ISTIMEWA<span class="ticket-art">💝</span><span class="ticket-number">03</span></span><span class="ticket-main"><span class="ticket-brand">Ali's Special Birthday Coupon 🎈</span><strong>1× SEDEKAH BAWA BERKAH</strong><small>Tulus ikhlas, semoga membawa berkah untuk kita.</small><span class="coupon-tag">UNTUK SUAMI ❤️</span></span><span class="ticket-check"><input type="checkbox" aria-label="Tandai kupon sedekah telah digunakan" data-coupon="3"><span class="check-label">PAKAI</span></span></label>
+<label class="coupon orange" id="c4"><span class="ticket-left">KUPON<br>ISTIMEWA<span class="ticket-art">🛒</span><span class="ticket-number">04</span></span><span class="ticket-main"><span class="ticket-brand">Ali's Special Birthday Coupon 🎈</span><strong>1× CHECKOUT SHOPEE</strong><small>Maks. Rp200.000</small><span class="coupon-tag">UNTUK SUAMI ❤️</span></span><span class="ticket-check"><input type="checkbox" aria-label="Tandai kupon Shopee telah digunakan" data-coupon="4"><span class="check-label">PAKAI</span></span></label>
+</div>
+</section>
+<footer>Dibuat dengan cinta, khusus untuk Ali Sandra. ❤️</footer>
+</main>
+<script>
+const envelope=document.getElementById('envelope');
+const letter=document.getElementById('letter');
+function openLetter(){envelope.classList.add('open');letter.classList.add('show');document.getElementById('tapText').textContent='💖 Surat terbuka! Selamat menikmati kejutanmu 💖';}
+envelope.addEventListener('click',openLetter);
+envelope.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openLetter();}});
+const boxes=[...document.querySelectorAll('[data-coupon]')];
+function update(){
+ let used=0;
+ boxes.forEach(box=>{const checked=localStorage.getItem('ali_birthday_coupon_'+box.dataset.coupon)==='true';box.checked=checked;box.closest('.coupon').classList.toggle('used',checked);if(checked)used++;});
+ document.getElementById('progressBar').style.width=(used/boxes.length*100)+'%';
+ document.getElementById('progressText').textContent=used+' dari '+boxes.length+' kupon telah digunakan';
+}
+boxes.forEach(box=>box.addEventListener('change',()=>{localStorage.setItem('ali_birthday_coupon_'+box.dataset.coupon,box.checked?'true':'false');update();}));
+update();
+</script>
+</body>
+</html>
